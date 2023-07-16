@@ -25,3 +25,22 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.wrapper{
+  display: flex;
+  justify-content: center;
+}
+.property-wrap{
+  display: grid;
+  grid-template-columns: repeat(4,20fr);
+  grid-column-gap: 2vw;
+}
+.property img{
+  width: 15rem; 
+}
+.title{
+  width: 15rem;
+}
+.property{
+  width: fit-content;
+}
