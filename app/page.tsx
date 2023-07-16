@@ -83,6 +83,5 @@ type PropertyProps = {
 
 export default fetchData;
 
-main();
+//main();
 fetchData();
-//displayWrapper.displayWrapper();
