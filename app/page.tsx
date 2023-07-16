@@ -26,7 +26,7 @@ async function database(title: string, url: string): Promise<void> {
 const main = async (): Promise<void> => {
   const browser: Browser = await puppeteer.launch();
   const page: Page = await browser.newPage();
-  for (let index = 0; index < 1; index++) {
+  for (let index = 1; index < 26 ; index++) {
     await page.goto('https://www.sreality.cz/en/search/for-sale/apartments?page=' + index);
     await page.waitForSelector('.dir-property-list');
     await page.screenshot({ path: 'screenshot.png', fullPage: true });
@@ -66,13 +66,11 @@ const fetchData = async () => {
     const propTitles = fetchedProperties.map((property) => property.title);
     const propUrls = fetchedProperties.map((property) => property.url);
     let components = [];
-    for (let index = 0; index < 4; index++) {
-      return (
-        <div className="wrapper">
-            <App titles={propTitles} urls={propUrls} />
-        </div>
-        )
-      }
+        return (
+          <div className="wrapper">
+              <App titles={propTitles} urls={propUrls} />
+          </div>
+          )
       } catch (err) {
         console.error('Error selecting from the database:', err);
     }

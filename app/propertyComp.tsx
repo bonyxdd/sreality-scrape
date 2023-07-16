@@ -20,13 +20,27 @@ type MyComponentArrayProps = {
 };
 
 const MyComponentArray: React.FC<MyComponentArrayProps> = ({ componentData }) => {
-  return (
-    <div className="property-wrap">
-      {componentData.map((data, index) => (
-        <SingleProperty key={index} propTitle={data.propTitle} propUrl={data.propUrl} />
-      ))}
-    </div>
-  );
+  const chunkSize = 50;
+  const chunks = Math.ceil(componentData.length / chunkSize);
+  const renderedChunks = [];
+
+  for (let i = 0; i < chunks; i++) {
+    const startIndex = i * chunkSize;
+    const endIndex = (i + 1) * chunkSize;
+    const chunkData = componentData.slice(startIndex, endIndex);
+
+    const renderedChunk = (
+      <div className={`property-wrap property-wrap${i + 1}`} key={i}>
+        {chunkData.map((data, index) => (
+          <SingleProperty key={index} propTitle={data.propTitle} propUrl={data.propUrl} />
+        ))}
+      </div>
+    );
+
+    renderedChunks.push(renderedChunk);
+  }
+
+  return <div>{renderedChunks}</div>;
 };
 
 type AppProps = {
@@ -39,10 +53,10 @@ const App: React.FC<AppProps> = ({ titles, urls }) => {
     propTitle: title,
     propUrl: urls[index],
   }));
-
-  return (
-      <MyComponentArray componentData={componentData} />
-  );
+  
+    return (
+        <MyComponentArray componentData={componentData} />
+    );
 };
 
 export default App;

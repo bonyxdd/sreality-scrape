@@ -1,6 +1,8 @@
+"use client"
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import Pagination from './pagination'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,6 +19,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <header>
+          <div className="name">Jakub Polák</div>
+          <div className="name">Sreality Scrape</div>
+        </header>
+        <Pagination/>
         {children}</body>
     </html>
   )
